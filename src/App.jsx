@@ -14,8 +14,12 @@ export default class App extends Component {
 
     handleFilterChange = (e) => {
         let newFilterValue = e.target.value
+        let filteredFruit = this.props.fruits.filter(fruit => {
+            return fruit.toLowerCase().includes(newFilterValue.toLowerCase())
+        })
         this.setState({
-            filterValue: newFilterValue
+            filterValue: newFilterValue,
+            fruitsToDisplay: filteredFruit
         })
     }
 
@@ -29,8 +33,6 @@ export default class App extends Component {
                 <List 
                     fruits={this.state.fruitsToDisplay}
                 />
-                <h3>Current Typed Value:</h3>
-                <p>{this.state.filterValue}</p>
             </div>
         )
     }
